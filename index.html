@@ -3,20 +3,31 @@
   <head>
     <title>Pedido de Productos</title>
     <style>
-      body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+      body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
       h2 { margin-top: 20px; }
-      input[type="text"], input[type="number"], input[type="email"] {
+      input[type="text"], input[type="number"], input[type="email"], select {
         width: 100%; padding: 8px; margin: 4px 0 10px;
       }
       table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
       th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
       th { background-color: #f2f2f2; }
       button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+      .category { margin-top: 30px; }
     </style>
+    <script>
+      function toggleDireccion() {
+        const checkbox = document.getElementById('retiro');
+        const direccionInput = document.getElementById('direccion');
+        direccionInput.disabled = checkbox.checked;
+        if (checkbox.checked) {
+          direccionInput.value = '';
+        }
+      }
+    </script>
   </head>
   <body>
     <h2>Formulario de Pedido</h2>
-    <form method="POST" action="https://n8n.srv867060.hstgr.cloud/webhook-test/478714e6-d399-43e0-9742-553eaf1d28e3">
+    <form method="POST" action="https://n8n.srv867060.hstgr.cloud/webhook/478714e6-d399-43e0-9742-553eaf1d28e3">
       <label>Nombre o Razón Social *</label>
       <input type="text" name="nombre" required>
 
@@ -29,35 +40,74 @@
       <label>Teléfono</label>
       <input type="text" name="telefono">
 
-      <label>Dirección de entrega</label>
-      <input type="text" name="direccion">
+      <label>Dirección de entrega *</label>
+      <input type="text" id="direccion" name="direccion" required>
+
+      <label><input type="checkbox" id="retiro" onclick="toggleDireccion()"> Retira en depósito</label>
 
       <label>Forma de pago *</label>
-      <input type="text" name="forma_pago" required>
+      <select name="forma_pago" required>
+        <option value="">Seleccioná una opción</option>
+        <option value="Transferencia">Transferencia</option>
+        <option value="Echeq al día">Echeq al día</option>
+        <option value="Echeq 30 días">Echeq 30 días</option>
+      </select>
 
-      <h2>Productos</h2>
-      <table>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-        </tr>
-        <tr>
-          <td>Shell Rimula R4 X 15W40 - Balde 20L</td>
-          <td><input type="number" name="rimula_balde" min="0"></td>
-        </tr>
-        <tr>
-          <td>Shell Rimula R4 X 15W40 - Tambor 200L</td>
-          <td><input type="number" name="rimula_tambor" min="0"></td>
-        </tr>
-        <tr>
-          <td>Total Rubia 7400 15W40 - Balde 20L</td>
-          <td><input type="number" name="rubia7400_balde" min="0"></td>
-        </tr>
-        <tr>
-          <td>Total Rubia 8600 10W40 - Tambor 200L</td>
-          <td><input type="number" name="rubia8600_tambor" min="0"></td>
-        </tr>
-      </table>
+      <div class="category">
+        <h3>Aceite de Motor</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>Shell Rimula R4 X 15W40 - Balde 20L</td><td><input type="number" name="rimula_balde" min="0"></td></tr>
+          <tr><td>Shell Rimula R4 X 15W40 - Tambor 200L</td><td><input type="number" name="rimula_tambor" min="0"></td></tr>
+          <tr><td>Total Rubia 7400 15W40 - Balde 20L</td><td><input type="number" name="rubia7400_balde" min="0"></td></tr>
+          <tr><td>Total Rubia 8600 10W40 - Tambor 200L</td><td><input type="number" name="rubia8600_tambor" min="0"></td></tr>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>Aceite de Transmisión</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>Shell Spirax S4 ATF HDX</td><td><input type="number" name="spirax_hdx" min="0"></td></tr>
+          <tr><td>Total Transmission Dual 9 FE</td><td><input type="number" name="transmission_dual9" min="0"></td></tr>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>Lubricantes</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>WD-40 Lubricante Multiuso</td><td><input type="number" name="wd40" min="0"></td></tr>
+          <tr><td>Lubricante en aerosol Penrite</td><td><input type="number" name="penrite" min="0"></td></tr>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>Grasas</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>Grasa Azul Multiuso Total</td><td><input type="number" name="grasa_azul" min="0"></td></tr>
+          <tr><td>Grasa Shell Gadus S2 V220</td><td><input type="number" name="gadus_v220" min="0"></td></tr>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>Refrigerantes</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>Refrigerante Total Coolelf MDX</td><td><input type="number" name="coolelf_mdx" min="0"></td></tr>
+          <tr><td>Refrigerante Shell Glycoshell</td><td><input type="number" name="glycoshell" min="0"></td></tr>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>Extras</h3>
+        <table>
+          <tr><th>Producto</th><th>Cantidad</th></tr>
+          <tr><td>Baldes vacíos 20L</td><td><input type="number" name="baldes_vacios" min="0"></td></tr>
+          <tr><td>Embudo plástico medidor</td><td><input type="number" name="embudo" min="0"></td></tr>
+        </table>
+      </div>
 
       <label>Observaciones</label>
       <input type="text" name="observaciones">

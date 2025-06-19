@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pedido de Productos</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+      h2 { margin-top: 20px; }
+      input[type="text"], input[type="number"], input[type="email"] {
+        width: 100%; padding: 8px; margin: 4px 0 10px;
+      }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+      th { background-color: #f2f2f2; }
+      button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <h2>Formulario de Pedido</h2>
+    <form method="POST" action="https://n8n.srv867060.hstgr.cloud/webhook-test/478714e6-d399-43e0-9742-553eaf1d28e3">
+      <label>Nombre o Razón Social *</label>
+      <input type="text" name="nombre" required>
+
+      <label>CUIT *</label>
+      <input type="text" name="cuit" required>
+
+      <label>Email *</label>
+      <input type="email" name="email" required>
+
+      <label>Teléfono</label>
+      <input type="text" name="telefono">
+
+      <label>Dirección de entrega</label>
+      <input type="text" name="direccion">
+
+      <label>Forma de pago *</label>
+      <input type="text" name="forma_pago" required>
+
+      <h2>Productos</h2>
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+        </tr>
+        <tr>
+          <td>Shell Rimula R4 X 15W40 - Balde 20L</td>
+          <td><input type="number" name="rimula_balde" min="0"></td>
+        </tr>
+        <tr>
+          <td>Shell Rimula R4 X 15W40 - Tambor 200L</td>
+          <td><input type="number" name="rimula_tambor" min="0"></td>
+        </tr>
+        <tr>
+          <td>Total Rubia 7400 15W40 - Balde 20L</td>
+          <td><input type="number" name="rubia7400_balde" min="0"></td>
+        </tr>
+        <tr>
+          <td>Total Rubia 8600 10W40 - Tambor 200L</td>
+          <td><input type="number" name="rubia8600_tambor" min="0"></td>
+        </tr>
+      </table>
+
+      <label>Observaciones</label>
+      <input type="text" name="observaciones">
+
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </body>
+</html>

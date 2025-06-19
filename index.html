@@ -43,7 +43,10 @@
       <label>Dirección de entrega *</label>
       <input type="text" id="direccion" name="direccion" required>
 
-      <label><input type="checkbox" id="retiro" onclick="toggleDireccion()"> Retira en depósito</label>
+      <div style="margin: 10px 0;">
+  <input type="checkbox" id="retiro" onclick="toggleDireccion()">
+  <label for="retiro">Retira en depósito</label>
+</div>
 
       <label>Forma de pago *</label>
       <select name="forma_pago" required>

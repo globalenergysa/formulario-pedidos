@@ -12,7 +12,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       background: #fff;
       padding: 30px;
@@ -43,6 +43,7 @@
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      box-sizing: border-box;
     }
     table {
       width: 100%;
@@ -51,7 +52,7 @@
     }
     th, td {
       border: 1px solid #ddd;
-      padding: 12px;
+      padding: 10px;
       text-align: left;
       vertical-align: middle;
     }
@@ -71,6 +72,9 @@
     }
     input[type="submit"]:hover {
       background-color: #d76612;
+    }
+    .checkbox-label {
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -94,7 +98,7 @@
       <label>Dirección de entrega *</label>
       <input type="text" name="direccion" id="direccion">
       
-      <label style="margin-top: 5px;">
+      <label class="checkbox-label">
         <input type="checkbox" id="retiro" name="retiro" onchange="toggleDireccion()"> Retira en depósito
       </label>
       
@@ -106,19 +110,49 @@
         <option value="Echeq 30 días">Echeq 30 días</option>
       </select>
 
+      <!-- CATEGORÍAS Y PRODUCTOS -->
+
       <h2>Aceite de Motor</h2>
       <table>
         <tr><th>Producto</th><th>Baldes 20L</th><th>Tambores 200L</th></tr>
-        <tr><td>Shell Rimula R4 X 15W40</td><td><input type="number" name="rimula_balde" min="0"></td><td><input type="number" name="rimula_tambor" min="0"></td></tr>
-        <tr><td>Total Rubia 7400 15W40</td><td><input type="number" name="rubia7400_balde" min="0"></td><td><input type="number" name="rubia7400_tambor" min="0"></td></tr>
-        <tr><td>Total Rubia 8600 10W40</td><td><input type="number" name="rubia8600_balde" min="0"></td><td><input type="number" name="rubia8600_tambor" min="0"></td></tr>
+        <tr><td>Shell Rimula R4 X 15W40</td><td><input type="number" name="rimula_balde"></td><td><input type="number" name="rimula_tambor"></td></tr>
+        <tr><td>Total Rubia 7400 15W40</td><td><input type="number" name="rubia7400_balde"></td><td><input type="number" name="rubia7400_tambor"></td></tr>
+        <tr><td>Total Rubia 8600 10W40</td><td><input type="number" name="rubia8600_balde"></td><td><input type="number" name="rubia8600_tambor"></td></tr>
       </table>
 
       <h2>Aceite de Transmisión</h2>
       <table>
         <tr><th>Producto</th><th>Baldes 20L</th><th>Tambores 200L</th></tr>
-        <tr><td>Shell Spirax S4 ATF HDX</td><td><input type="number" name="spirax_balde" min="0"></td><td><input type="number" name="spirax_tambor" min="0"></td></tr>
-        <tr><td>Total Transmission Dual 9 FE</td><td><input type="number" name="dual9_balde" min="0"></td><td><input type="number" name="dual9_tambor" min="0"></td></tr>
+        <tr><td>Shell Spirax S4 ATF HDX</td><td><input type="number" name="spirax_balde"></td><td><input type="number" name="spirax_tambor"></td></tr>
+        <tr><td>Total Transmission Dual 9 FE</td><td><input type="number" name="dual9_balde"></td><td><input type="number" name="dual9_tambor"></td></tr>
+      </table>
+
+      <h2>Lubricantes</h2>
+      <table>
+        <tr><th>Producto</th><th>Baldes 20L</th><th>Tambores 200L</th></tr>
+        <tr><td>Lubrax 5W30 Sintético</td><td><input type="number" name="lubrax_balde"></td><td><input type="number" name="lubrax_tambor"></td></tr>
+        <tr><td>Shell Tellus S2 M 46</td><td><input type="number" name="tellus_balde"></td><td><input type="number" name="tellus_tambor"></td></tr>
+      </table>
+
+      <h2>Grasas</h2>
+      <table>
+        <tr><th>Producto</th><th>Baldes</th><th>Tambores</th></tr>
+        <tr><td>Grasa Shell Gadus S2 V220</td><td><input type="number" name="gadus_balde"></td><td><input type="number" name="gadus_tambor"></td></tr>
+        <tr><td>Grasa Total Multis EP</td><td><input type="number" name="multis_balde"></td><td><input type="number" name="multis_tambor"></td></tr>
+      </table>
+
+      <h2>Refrigerantes</h2>
+      <table>
+        <tr><th>Producto</th><th>Bidones</th><th>Tambores</th></tr>
+        <tr><td>Refrigerante Peak 50/50</td><td><input type="number" name="peak_bidon"></td><td><input type="number" name="peak_tambor"></td></tr>
+        <tr><td>Total Coolelf MDX</td><td><input type="number" name="coolelf_bidon"></td><td><input type="number" name="coolelf_tambor"></td></tr>
+      </table>
+
+      <h2>Extras</h2>
+      <table>
+        <tr><th>Producto</th><th>Cant.</th><th></th></tr>
+        <tr><td>Limpiador de inyectores</td><td><input type="number" name="inyectores"></td><td></td></tr>
+        <tr><td>Desengrasante industrial</td><td><input type="number" name="desengrasante"></td><td></td></tr>
       </table>
 
       <input type="submit" value="Enviar Pedido">

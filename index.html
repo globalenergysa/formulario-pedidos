@@ -35,7 +35,6 @@
     }
     input[type="text"],
     input[type="email"],
-    input[type="number"],
     select {
       width: 100%;
       padding: 8px;
@@ -44,6 +43,18 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       box-sizing: border-box;
+    }
+    input[type="number"] {
+      width: 80px;
+      padding: 6px;
+      text-align: center;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    td input[type="number"] {
+      display: block;
+      margin: 0 auto;
     }
     table {
       width: 100%;
@@ -109,6 +120,8 @@
         <option value="Echeq al día">Echeq al día</option>
         <option value="Echeq 30 días">Echeq 30 días</option>
       </select>
+
+      <p style="margin-top: -10px; font-size: 14px; color: #888;">Los campos marcados con * son obligatorios</p>
 
       <!-- CATEGORÍAS Y PRODUCTOS -->
 

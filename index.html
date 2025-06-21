@@ -1,184 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Pedido - Global Energy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Pedido - Global Energy</title>
   <style>
     body {
       font-family: 'Helvetica Neue', sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
+      background-color: #ffffff;
       color: #333;
+      padding: 20px;
     }
     .container {
+      max-width: 900px;
+      margin: 0 auto;
       background: #fff;
-      max-width: 800px;
-      margin: auto;
       padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     }
     img.logo {
-      display: block;
-      margin: 0 auto 30px;
-      max-width: 220px;
+      width: 200px;
+      margin-bottom: 20px;
     }
     h2 {
-      text-align: center;
-      color: #E67E22;
+      border-bottom: 3px solid #f47c20;
+      color: #f47c20;
+      padding-bottom: 4px;
+      margin-top: 30px;
     }
     label {
       display: block;
-      margin-top: 12px;
-      font-weight: bold;
+      margin-top: 10px;
     }
-    input[type="text"], input[type="email"], input[type="number"], select {
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       margin-top: 5px;
-      border-radius: 8px;
+      margin-bottom: 10px;
       border: 1px solid #ccc;
+      border-radius: 8px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
+      margin-bottom: 25px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+      vertical-align: middle;
     }
     th {
-      background-color: #E67E22;
+      background-color: #f47c20;
       color: white;
-      padding: 10px;
     }
-    td {
-      border: 1px solid #ccc;
-      padding: 8px;
-    }
-    button {
-      background-color: #E67E22;
+    input[type="submit"] {
+      background-color: #f47c20;
       color: white;
-      font-weight: bold;
-      padding: 14px 28px;
+      padding: 12px 20px;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
-      display: block;
-      margin: 30px auto 0;
+      margin-top: 20px;
     }
-    .category h3 {
-      margin-top: 40px;
-      color: #E67E22;
-      border-bottom: 2px solid #E67E22;
-      padding-bottom: 5px;
+    input[type="submit"]:hover {
+      background-color: #d76612;
     }
   </style>
-  <script>
-    function toggleDireccion() {
-      const checkbox = document.getElementById('retiro');
-      const direccionInput = document.getElementById('direccion');
-      direccionInput.disabled = checkbox.checked;
-      if (checkbox.checked) {
-        direccionInput.value = '';
-      }
-    }
-  </script>
 </head>
 <body>
   <div class="container">
-    <img src="logo-global.png" alt="Global Energy" class="logo">
-    <h2>Formulario de Pedido</h2>
-    <form method="POST" action="https://n8n.srv867060.hstgr.cloud/webhook/478714e6-d399-43e0-9742-553eaf1d28e3">
-      <label>Nombre o Razón Social *</label>
-      <input type="text" name="nombre" required>
-
+    <img src="logo-global.png" alt="Logo Global Energy" class="logo">
+    <h2>Datos del Cliente</h2>
+    <form action="https://n8n.srv867060.hstgr.cloud/webhook/478714e6-d399-43e0-9742-553eaf1d28e3" method="POST">
+      <label>Nombre / Empresa *</label>
+      <input type="text" name="cliente" required>
+      
       <label>CUIT *</label>
       <input type="text" name="cuit" required>
-
+      
       <label>Email *</label>
       <input type="email" name="email" required>
-
+      
       <label>Teléfono</label>
       <input type="text" name="telefono">
-
+      
       <label>Dirección de entrega *</label>
-      <input type="text" id="direccion" name="direccion" required>
-
-      <label>
-        <input type="checkbox" id="retiro" onclick="toggleDireccion()"> Retira en depósito
+      <input type="text" name="direccion" id="direccion">
+      
+      <label style="margin-top: 5px;">
+        <input type="checkbox" id="retiro" name="retiro" onchange="toggleDireccion()"> Retira en depósito
       </label>
-
-      <label>Forma de pago *</label>
+      
+      <label>Forma de Pago *</label>
       <select name="forma_pago" required>
-        <option value="">Seleccioná una opción</option>
+        <option value="">Seleccione</option>
         <option value="Transferencia">Transferencia</option>
         <option value="Echeq al día">Echeq al día</option>
         <option value="Echeq 30 días">Echeq 30 días</option>
       </select>
 
-      <div class="category">
-        <h3>Aceite de Motor</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>Shell Rimula R4 X 15W40 - Balde 20L</td><td><input type="number" name="rimula_balde" min="0"></td></tr>
-          <tr><td>Shell Rimula R4 X 15W40 - Tambor 200L</td><td><input type="number" name="rimula_tambor" min="0"></td></tr>
-          <tr><td>Total Rubia 7400 15W40 - Balde 20L</td><td><input type="number" name="rubia7400_balde" min="0"></td></tr>
-          <tr><td>Total Rubia 8600 10W40 - Tambor 200L</td><td><input type="number" name="rubia8600_tambor" min="0"></td></tr>
-        </table>
-      </div>
+      <h2>Aceite de Motor</h2>
+      <table>
+        <tr><th>Producto</th><th>Baldes 20L</th><th>Tambores 200L</th></tr>
+        <tr><td>Shell Rimula R4 X 15W40</td><td><input type="number" name="rimula_balde" min="0"></td><td><input type="number" name="rimula_tambor" min="0"></td></tr>
+        <tr><td>Total Rubia 7400 15W40</td><td><input type="number" name="rubia7400_balde" min="0"></td><td><input type="number" name="rubia7400_tambor" min="0"></td></tr>
+        <tr><td>Total Rubia 8600 10W40</td><td><input type="number" name="rubia8600_balde" min="0"></td><td><input type="number" name="rubia8600_tambor" min="0"></td></tr>
+      </table>
 
-      <div class="category">
-        <h3>Aceite de Transmisión</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>Shell Spirax S4 ATF HDX</td><td><input type="number" name="spirax_hdx" min="0"></td></tr>
-          <tr><td>Total Transmission Dual 9 FE</td><td><input type="number" name="transmission_dual9" min="0"></td></tr>
-        </table>
-      </div>
+      <h2>Aceite de Transmisión</h2>
+      <table>
+        <tr><th>Producto</th><th>Baldes 20L</th><th>Tambores 200L</th></tr>
+        <tr><td>Shell Spirax S4 ATF HDX</td><td><input type="number" name="spirax_balde" min="0"></td><td><input type="number" name="spirax_tambor" min="0"></td></tr>
+        <tr><td>Total Transmission Dual 9 FE</td><td><input type="number" name="dual9_balde" min="0"></td><td><input type="number" name="dual9_tambor" min="0"></td></tr>
+      </table>
 
-      <div class="category">
-        <h3>Lubricantes</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>WD-40 Lubricante Multiuso</td><td><input type="number" name="wd40" min="0"></td></tr>
-          <tr><td>Lubricante en aerosol Penrite</td><td><input type="number" name="penrite" min="0"></td></tr>
-        </table>
-      </div>
-
-      <div class="category">
-        <h3>Grasas</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>Grasa Azul Multiuso Total</td><td><input type="number" name="grasa_azul" min="0"></td></tr>
-          <tr><td>Grasa Shell Gadus S2 V220</td><td><input type="number" name="gadus_v220" min="0"></td></tr>
-        </table>
-      </div>
-
-      <div class="category">
-        <h3>Refrigerantes</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>Refrigerante Total Coolelf MDX</td><td><input type="number" name="coolelf_mdx" min="0"></td></tr>
-          <tr><td>Refrigerante Shell Glycoshell</td><td><input type="number" name="glycoshell" min="0"></td></tr>
-        </table>
-      </div>
-
-      <div class="category">
-        <h3>Extras</h3>
-        <table>
-          <tr><th>Producto</th><th>Cantidad</th></tr>
-          <tr><td>Baldes vacíos 20L</td><td><input type="number" name="baldes_vacios" min="0"></td></tr>
-          <tr><td>Embudo plástico medidor</td><td><input type="number" name="embudo" min="0"></td></tr>
-        </table>
-      </div>
-
-      <label>Observaciones</label>
-      <input type="text" name="observaciones">
-
-      <button type="submit">Enviar Pedido</button>
+      <input type="submit" value="Enviar Pedido">
     </form>
   </div>
+
+  <script>
+    function toggleDireccion() {
+      const retiro = document.getElementById('retiro');
+      const direccion = document.getElementById('direccion');
+      direccion.disabled = retiro.checked;
+      if (retiro.checked) direccion.value = '';
+    }
+  </script>
 </body>
 </html>

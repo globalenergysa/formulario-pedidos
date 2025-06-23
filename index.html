@@ -66,6 +66,19 @@ body {
     button:hover {
       background-color: #e65100;
     }
+    .product-table td {
+  padding: 8px;
+  vertical-align: middle;
+}
+
+.product-table input[type="number"] {
+  width: 70px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -415,34 +428,35 @@ body {
 </table>
 <!-- Categoría: Varios -->
 <h3>Varios</h3>
-<table>
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
   <thead>
-    <tr style="background-color: #FFA500; color: #fff;">
-      <th style="padding: 10px; text-align: left;">Producto</th>
-      <th style="padding: 10px; text-align: left;">Caja</th>
+    <tr style="background-color: #f90; color: white;">
+      <th style="text-align: left; padding: 10px;">Producto</th>
+      <th style="text-align: left; padding: 10px;">Caja</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="padding: 8px;">TOTAL HBF 3</td>
       <td style="padding: 8px;">
-        <input type="number" name="hbf3_caja" min="0" style="width: 80px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="number" name="hbf3_caja" min="0" style="width: 70px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
       </td>
     </tr>
     <tr>
       <td style="padding: 8px;">TOTAL HBF 4</td>
       <td style="padding: 8px;">
-        <input type="number" name="hbf4_caja" min="0" style="width: 80px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="number" name="hbf4_caja" min="0" style="width: 70px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
       </td>
     </tr>
     <tr>
       <td style="padding: 8px;">TOTAL VISION</td>
       <td style="padding: 8px;">
-        <input type="number" name="vision_caja" min="0" style="width: 80px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="number" name="vision_caja" min="0" style="width: 70px; padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
       </td>
     </tr>
   </tbody>
 </table>
+
 
 <!-- Botón de Envío -->
 <div class="form-footer">

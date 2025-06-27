@@ -455,5 +455,30 @@ body {
 </footer>
 
 </div> <!-- Cierre del contenedor principal -->
+  <script>
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita el envío normal
+
+    const form = event.target;
+    const data = new FormData(form);
+    const jsonData = Object.fromEntries(data.entries());
+
+    fetch(form.action, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(jsonData)
+    })
+    .then(() => {
+      window.location.href = "gracias.html";
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Hubo un error al enviar el formulario. Por favor, intentá nuevamente.");
+    });
+  });
+</script>
+
 </body>
 </html>
